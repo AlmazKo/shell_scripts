@@ -3,7 +3,7 @@
 # author: Alexander Suslov
 
 xconvert() {
-  encode=`id3 -R -l "$*" | sed -n '/Title\|Artist\|Album/p' | enca -i -Lrussian`
+  encode=`id3v2 -R -l "$*" | sed -n '/^Title\|^Artist\|^Album\|^[A-Z][A-Z0-9][A-Z0-9]:/p' | enca -i -Lrussian`
 
   if [ "$encode" != "ASCII" ] && [ "$encode" != "UTF-8" ] && [ "$encode" != "???" ]; then 
     echo "FILE  :$*f"
